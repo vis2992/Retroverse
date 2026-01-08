@@ -57,7 +57,7 @@ export default function SignUpPage() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 justify-center mb-8">
-          <img src="/images/retrospeck-logo.png" alt="Retrospeck" className="w-12 h-12" />
+          <img src="/images/retrospeck-logo.jpeg" alt="Retrospeck" className="w-12 h-12" />
           <span className="text-2xl font-bold text-white tracking-tight">Retrospeck</span>
         </Link>
 

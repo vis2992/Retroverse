@@ -71,7 +71,7 @@ export default function JoinPage() {
         animate={{ opacity: 1 }}
         className="flex flex-col items-center gap-6"
       >
-        <img src="/images/retrospeck-logo.png" alt="Retrospeck" className="w-20 h-20" />
+        <img src="/images/retrospeck-logo.jpeg" alt="Retrospeck" className="w-20 h-20" />
         <div className="text-center">
           <h1 className="text-xl font-semibold text-white mb-2">Joining board...</h1>
           <p className="text-zinc-400">Code: {code}</p>
