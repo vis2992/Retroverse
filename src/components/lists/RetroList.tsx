@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDroppable } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { Plus, MoreVertical, Trash2, Edit2 } from 'lucide-react';
+import { Plus, MoreVertical, Trash2, Edit2, Image } from 'lucide-react';
 import { useAuthStore } from '@/stores/authStore';
 import { useBoardStore } from '@/stores/boardStore';
 import { RetroCard } from '@/components/cards/RetroCard';
