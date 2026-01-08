@@ -73,7 +73,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
               id: firebaseUser.uid,
               email: firebaseUser.email || '',
               displayName: firebaseUser.displayName || 'Anonymous',
-              photoURL: firebaseUser.photoURL || undefined,
+              ...(firebaseUser.photoURL ? { photoURL: firebaseUser.photoURL } : {}),
               createdAt: Date.now(),
             };
             
@@ -100,7 +100,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             id: firebaseUser.uid,
             email: firebaseUser.email || '',
             displayName: firebaseUser.displayName || 'Anonymous',
-            photoURL: firebaseUser.photoURL || undefined,
+            ...(firebaseUser.photoURL ? { photoURL: firebaseUser.photoURL } : {}),
             createdAt: Date.now(),
           };
           set({ 

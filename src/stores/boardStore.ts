@@ -418,7 +418,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
         updatedAt: now,
         isAnonymous,
         order: maxOrder + 1,
-        gifUrl: gifUrl || undefined,
+        ...(gifUrl ? { gifUrl } : {}), // Only include if gifUrl has a value
       };
       console.log('[Card] Writing to Firestore...');
       await setDoc(doc(db, 'cards', cardId), card);
