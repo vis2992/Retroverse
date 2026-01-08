@@ -13,7 +13,7 @@ import { formatRelativeTime } from '@/lib/utils';
 export default function DashboardPage() {
   const router = useRouter();
   const { user, signOut } = useAuthStore();
-  const { boards, isLoading, error, fetchUserBoards, createBoard, joinBoard, deleteBoard, clearError } = useBoardStore();
+  const { boards, isLoading, error, fetchUserBoards, createBoard, joinBoard, deleteBoard, clearError, cleanup } = useBoardStore();
   
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showJoinModal, setShowJoinModal] = useState(false);
@@ -29,6 +29,10 @@ export default function DashboardPage() {
     if (user) {
       fetchUserBoards(user.id);
     }
+    // Cleanup any board subscriptions when returning to dashboard
+    return () => {
+      cleanup();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
 
