@@ -42,17 +42,24 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     // Prevent multiple auth listeners
     const { authUnsubscribe: existing } = get();
     if (existing) {
-      console.warn('Auth listener already exists, skipping initialization');
+      console.warn('[Auth] Listener already exists, skipping initialization');
       return existing;
     }
 
+    console.log('[Auth] Setting up auth state listener');
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      console.log('[Auth] onAuthStateChanged fired:', firebaseUser ? 'User logged in' : 'No user');
+      
       if (firebaseUser) {
+        console.log('[Auth] User ID:', firebaseUser.uid);
         try {
           // Fetch or create user document
+          console.log('[Auth] Fetching user document...');
           const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+          console.log('[Auth] User document exists:', userDoc.exists());
           
           if (userDoc.exists()) {
+            console.log('[Auth] Setting existing user in state');
             set({ 
               user: userDoc.data() as User, 
               firebaseUser,
@@ -61,6 +68,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             });
           } else {
             // Create user document if it doesn't exist
+            console.log('[Auth] User document not found, creating new one...');
             const newUser: User = {
               id: firebaseUser.uid,
               email: firebaseUser.email || '',
@@ -71,11 +79,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             
             try {
               await setDoc(doc(db, 'users', firebaseUser.uid), newUser);
+              console.log('[Auth] User document created successfully');
             } catch (firestoreError) {
-              console.error('Failed to create user document:', firestoreError);
+              console.error('[Auth] FAILED to create user document:', firestoreError);
               // Continue anyway - user can still use the app
             }
             
+            console.log('[Auth] Setting new user in state');
             set({ 
               user: newUser, 
               firebaseUser,
@@ -84,7 +94,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             });
           }
         } catch (error) {
-          console.error('Error in auth state change:', error);
+          console.error('[Auth] ERROR in auth state change:', error);
           // Still set the user from Firebase Auth data even if Firestore fails
           const fallbackUser: User = {
             id: firebaseUser.uid,
@@ -101,6 +111,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
           });
         }
       } else {
+        console.log('[Auth] No user - setting null state');
         set({ 
           user: null, 
           firebaseUser: null,
@@ -109,6 +120,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         });
       }
     });
+    console.log('[Auth] Auth listener set up complete');
 
     set({ authUnsubscribe: unsubscribe });
     return () => {

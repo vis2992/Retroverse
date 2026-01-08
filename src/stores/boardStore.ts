@@ -97,6 +97,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   },
 
   createBoard: async (name: string, template: BoardTemplate, ownerId: string, backgroundColor: string) => {
+    console.log('[Board] createBoard called with:', { name, template, ownerId });
     set({ isSaving: true, error: null });
     try {
       const boardId = nanoid();
@@ -115,9 +116,9 @@ export const useBoardStore = create<BoardState>((set, get) => ({
         backgroundColor,
       };
       
-      console.log('Creating board:', board);
+      console.log('[Board] Attempting to create board:', boardId);
       await setDoc(doc(db, 'boards', boardId), board);
-      console.log('Board created successfully');
+      console.log('[Board] Board document created successfully!');
       
       // Create default lists based on template
       if (template !== 'custom') {
@@ -150,7 +151,13 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       set({ isSaving: false });
       return boardId;
     } catch (error: unknown) {
-      console.error('Failed to create board:', error);
+      console.error('[Board] FAILED to create board:', error);
+      // Log the full error details
+      if (error instanceof Error) {
+        console.error('[Board] Error name:', error.name);
+        console.error('[Board] Error message:', error.message);
+        console.error('[Board] Error stack:', error.stack);
+      }
       const message = error instanceof Error ? error.message : 'Failed to create board';
       set({ error: message, isSaving: false });
       throw error;
