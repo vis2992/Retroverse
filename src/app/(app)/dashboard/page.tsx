@@ -18,9 +18,11 @@ export default function DashboardPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showJoinModal, setShowJoinModal] = useState(false);
   const [newBoardName, setNewBoardName] = useState('');
+  const [nameError, setNameError] = useState<string | null>(null);
   const [selectedTemplate, setSelectedTemplate] = useState<BoardTemplate>('mad-sad-glad');
   const [selectedColor, setSelectedColor] = useState(BOARD_COLORS[0]);
   const [joinCode, setJoinCode] = useState('');
+  const [joinCodeError, setJoinCodeError] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [menuOpenId, setMenuOpenId] = useState<string | null>(null);
   const [localError, setLocalError] = useState<string | null>(null);
@@ -37,9 +39,16 @@ export default function DashboardPage() {
   }, [user?.id]);
 
   const handleCreateBoard = async () => {
-    if (!newBoardName.trim() || !user) return;
+    // Validate required fields
+    if (!newBoardName.trim()) {
+      setNameError('Board name is required');
+      return;
+    }
+    if (!user) return;
+    
     setIsCreating(true);
     setLocalError(null);
+    setNameError(null);
     try {
       const boardId = await createBoard(newBoardName.trim(), selectedTemplate, user.id, selectedColor);
       setShowCreateModal(false);
@@ -54,7 +63,14 @@ export default function DashboardPage() {
   };
 
   const handleJoinBoard = async () => {
-    if (!joinCode.trim() || !user) return;
+    // Validate required fields
+    if (!joinCode.trim()) {
+      setJoinCodeError('Join code is required');
+      return;
+    }
+    if (!user) return;
+    
+    setJoinCodeError(null);
     const boardId = await joinBoard(joinCode.trim(), user.id);
     if (boardId) {
       setShowJoinModal(false);
@@ -248,7 +264,7 @@ export default function DashboardPage() {
       </main>
 
       {/* Create Board Modal */}
-      <Modal isOpen={showCreateModal} onClose={() => { setShowCreateModal(false); setLocalError(null); }} title="Create New Board">
+      <Modal isOpen={showCreateModal} onClose={() => { setShowCreateModal(false); setLocalError(null); setNameError(null); }} title="Create New Board">
         <div className="space-y-6">
           {(localError || error) && (
             <motion.div
@@ -264,7 +280,8 @@ export default function DashboardPage() {
             label="Board Name"
             placeholder="Sprint 42 Retrospective"
             value={newBoardName}
-            onChange={(e) => setNewBoardName(e.target.value)}
+            onChange={(e) => { setNewBoardName(e.target.value); setNameError(null); }}
+            error={nameError || undefined}
           />
 
           <div>
@@ -319,7 +336,7 @@ export default function DashboardPage() {
       </Modal>
 
       {/* Join Board Modal */}
-      <Modal isOpen={showJoinModal} onClose={() => { setShowJoinModal(false); clearError(); }} title="Join Board">
+      <Modal isOpen={showJoinModal} onClose={() => { setShowJoinModal(false); clearError(); setJoinCodeError(null); }} title="Join Board">
         <div className="space-y-6">
           {error && (
             <motion.div
@@ -335,8 +352,9 @@ export default function DashboardPage() {
             label="Join Code"
             placeholder="Enter 8-character code"
             value={joinCode}
-            onChange={(e) => { setJoinCode(e.target.value.toUpperCase()); clearError(); }}
+            onChange={(e) => { setJoinCode(e.target.value.toUpperCase()); clearError(); setJoinCodeError(null); }}
             maxLength={8}
+            error={joinCodeError || undefined}
           />
 
           <div className="flex gap-3 pt-2">
