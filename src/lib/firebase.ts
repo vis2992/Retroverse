@@ -3,12 +3,12 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore, enableIndexedDbPersistence } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAc1shYFpiU56ZiWXISxs77oQ5T-r_2Kkk",
-  authDomain: "retroverse-d0e1e.firebaseapp.com",
-  projectId: "retroverse-d0e1e",
-  storageBucket: "retroverse-d0e1e.firebasestorage.app",
-  messagingSenderId: "114374922298",
-  appId: "1:114374922298:web:1955a9f1d6c3dc53c92503"
+  apiKey: "AIzaSyAFV5UtCnpdIEmAayja8Q_cWUDBIDfa8X4",
+  authDomain: "retrospeck-5b3af.firebaseapp.com",
+  projectId: "retrospeck-5b3af",
+  storageBucket: "retrospeck-5b3af.firebasestorage.app",
+  messagingSenderId: "471459019706",
+  appId: "1:471459019706:web:a9298a5f60583842ec7b83"
 };
 
 console.log('[Firebase] Initializing with project:', firebaseConfig.projectId);
