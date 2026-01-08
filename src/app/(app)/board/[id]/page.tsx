@@ -60,7 +60,8 @@ export default function BoardPage() {
   useEffect(() => {
     subscribeToBoard(boardId);
     return () => cleanup();
-  }, [boardId, subscribeToBoard, cleanup]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [boardId]);
 
   const handleDragStart = (event: DragStartEvent) => {
     const { active } = event;

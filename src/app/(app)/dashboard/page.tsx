@@ -29,7 +29,8 @@ export default function DashboardPage() {
     if (user) {
       fetchUserBoards(user.id);
     }
-  }, [user, fetchUserBoards]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]);
 
   const handleCreateBoard = async () => {
     if (!newBoardName.trim() || !user) return;
