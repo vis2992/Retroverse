@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
@@ -45,6 +45,7 @@ export default function BoardPage() {
   const [showAddList, setShowAddList] = useState(false);
   const [newListTitle, setNewListTitle] = useState('');
   const [newListEmoji, setNewListEmoji] = useState('📝');
+  const isSubscribedRef = useRef(false);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -58,8 +59,15 @@ export default function BoardPage() {
   );
 
   useEffect(() => {
+    // Prevent double subscription (React Strict Mode protection)
+    if (isSubscribedRef.current) return;
+    isSubscribedRef.current = true;
+
     subscribeToBoard(boardId);
-    return () => cleanup();
+    return () => {
+      cleanup();
+      isSubscribedRef.current = false;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boardId]);
 
