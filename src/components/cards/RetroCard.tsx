@@ -122,10 +122,6 @@ export function RetroCard({ card, listColor }: RetroCardProps) {
             </div>
           ) : (
             <>
-              {card.emoji && (
-                <div className="text-3xl mb-2">{card.emoji}</div>
-              )}
-              
               <p className="text-zinc-200 text-sm whitespace-pre-wrap break-words">{card.content}</p>
               
               {card.gifUrl && (

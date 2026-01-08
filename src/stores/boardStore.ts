@@ -51,7 +51,7 @@ interface BoardState {
   reorderLists: (lists: List[]) => Promise<void>;
   
   // Card actions
-  createCard: (listId: string, boardId: string, content: string, authorId: string, authorName: string, isAnonymous: boolean, emoji?: string, gifUrl?: string) => Promise<void>;
+  createCard: (listId: string, boardId: string, content: string, authorId: string, authorName: string, isAnonymous: boolean, gifUrl?: string) => Promise<void>;
   updateCard: (cardId: string, updates: Partial<Card>) => Promise<void>;
   deleteCard: (cardId: string) => Promise<void>;
   moveCard: (cardId: string, newListId: string, newOrder?: number) => Promise<void>;
@@ -389,7 +389,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     }
   },
 
-  createCard: async (listId: string, boardId: string, content: string, authorId: string, authorName: string, isAnonymous: boolean, emoji?: string, gifUrl?: string) => {
+  createCard: async (listId: string, boardId: string, content: string, authorId: string, authorName: string, isAnonymous: boolean, gifUrl?: string) => {
     set({ isSaving: true, error: null });
     try {
       const { cards } = get();
@@ -410,7 +410,6 @@ export const useBoardStore = create<BoardState>((set, get) => ({
         updatedAt: now,
         isAnonymous,
         order: maxOrder + 1,
-        emoji: emoji || undefined,
         gifUrl: gifUrl || undefined,
       };
       await setDoc(doc(db, 'cards', cardId), card);

@@ -37,7 +37,6 @@ export interface Card {
   updatedAt: number;
   isAnonymous: boolean;
   order: number;
-  emoji?: string;
   gifUrl?: string;
 }
 

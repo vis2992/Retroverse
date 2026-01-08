@@ -11,7 +11,6 @@ import { RetroCard } from '@/components/cards/RetroCard';
 import { Button, Textarea, Input, Modal, EmojiPicker } from '@/components/ui';
 import type { List, Card } from '@/types';
 import { cn } from '@/lib/utils';
-import { Smile, Image } from 'lucide-react';
 
 interface RetroListProps {
   list: List;
@@ -25,7 +24,6 @@ export function RetroList({ list, cards, boardId }: RetroListProps) {
   
   const [showAddCard, setShowAddCard] = useState(false);
   const [newCardContent, setNewCardContent] = useState('');
-  const [newCardEmoji, setNewCardEmoji] = useState('');
   const [newCardGif, setNewCardGif] = useState('');
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
@@ -47,11 +45,9 @@ export function RetroList({ list, cards, boardId }: RetroListProps) {
         user.id, 
         user.displayName, 
         isAnonymous,
-        newCardEmoji || undefined,
         newCardGif || undefined
       );
       setNewCardContent('');
-      setNewCardEmoji('');
       setNewCardGif('');
       setShowAddCard(false);
     } finally {
@@ -156,21 +152,6 @@ export function RetroList({ list, cards, boardId }: RetroListProps) {
                 autoFocus
               />
               
-              <div className="flex gap-2">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <Smile className="w-4 h-4 text-zinc-500" />
-                    <Input
-                      placeholder="Add emoji (optional)"
-                      value={newCardEmoji}
-                      onChange={(e) => setNewCardEmoji(e.target.value)}
-                      className="text-xl"
-                      maxLength={2}
-                    />
-                  </div>
-                </div>
-              </div>
-              
               <div className="flex items-center gap-2">
                 <Image className="w-4 h-4 text-zinc-500" />
                 <Input
@@ -198,7 +179,6 @@ export function RetroList({ list, cards, boardId }: RetroListProps) {
                 <Button size="sm" variant="ghost" onClick={() => { 
                   setShowAddCard(false); 
                   setNewCardContent(''); 
-                  setNewCardEmoji('');
                   setNewCardGif('');
                 }}>
                   Cancel
