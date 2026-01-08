@@ -1,0 +1,68 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Body -->
+  <ellipse cx="100" cy="115" rx="65" ry="70" fill="url(#bodyGradient)"/>
+  
+  <!-- Belly -->
+  <ellipse cx="100" cy="130" rx="40" ry="45" fill="#E8E4F0"/>
+  
+  <!-- Head feathers/ears -->
+  <path d="M50 60 Q60 30 80 50" stroke="url(#featherGradient)" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <path d="M150 60 Q140 30 120 50" stroke="url(#featherGradient)" stroke-width="8" stroke-linecap="round" fill="none"/>
+  
+  <!-- Left eye socket -->
+  <circle cx="70" cy="85" r="28" fill="#1a1625"/>
+  <!-- Right eye socket -->
+  <circle cx="130" cy="85" r="28" fill="#1a1625"/>
+  
+  <!-- Left eye -->
+  <circle cx="70" cy="85" r="18" fill="white"/>
+  <circle cx="74" cy="82" r="10" fill="#1a1625"/>
+  <circle cx="77" cy="79" r="3" fill="white"/>
+  
+  <!-- Right eye -->
+  <circle cx="130" cy="85" r="18" fill="white"/>
+  <circle cx="134" cy="82" r="10" fill="#1a1625"/>
+  <circle cx="137" cy="79" r="3" fill="white"/>
+  
+  <!-- Glasses frame -->
+  <circle cx="70" cy="85" r="30" stroke="url(#glassesGradient)" stroke-width="5" fill="none"/>
+  <circle cx="130" cy="85" r="30" stroke="url(#glassesGradient)" stroke-width="5" fill="none"/>
+  <!-- Glasses bridge -->
+  <path d="M100 85 Q100 75 100 85" stroke="url(#glassesGradient)" stroke-width="4"/>
+  <line x1="100" y1="82" x2="100" y2="88" stroke="url(#glassesGradient)" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Beak -->
+  <path d="M100 100 L92 115 L100 120 L108 115 Z" fill="#F59E0B"/>
+  
+  <!-- Wing hints -->
+  <ellipse cx="45" cy="130" rx="15" ry="35" fill="url(#wingGradient)" opacity="0.8"/>
+  <ellipse cx="155" cy="130" rx="15" ry="35" fill="url(#wingGradient)" opacity="0.8"/>
+  
+  <!-- Feet -->
+  <ellipse cx="80" cy="180" rx="12" ry="6" fill="#F59E0B"/>
+  <ellipse cx="120" cy="180" rx="12" ry="6" fill="#F59E0B"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    
+    <linearGradient id="featherGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    
+    <linearGradient id="glassesGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    
+    <linearGradient id="wingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+  </defs>
+</svg>

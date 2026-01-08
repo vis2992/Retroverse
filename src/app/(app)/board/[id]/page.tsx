@@ -254,7 +254,7 @@ export default function BoardPage() {
             animate={{ opacity: 1, y: 0 }}
             className="flex flex-col items-center justify-center py-20"
           >
-            <img src="/images/retrospeck-logo.jpeg" alt="Retrospeck" className="w-24 h-24 mb-6" />
+            <img src="/images/retrospeck-logo.svg" alt="Retrospeck" className="w-24 h-24 mb-6" />
             <h2 className="text-2xl font-bold text-white mb-2">What does Retrospeck see?</h2>
             <p className="text-white/60 mb-6 text-center max-w-md">
               Add your first list to begin gathering insights from your sprint

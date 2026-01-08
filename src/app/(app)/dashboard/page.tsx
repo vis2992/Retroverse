@@ -98,7 +98,7 @@ export default function DashboardPage() {
       <header className="border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/images/retrospeck-logo.jpeg" alt="Retrospeck" className="w-10 h-10" />
+            <img src="/images/retrospeck-logo.svg" alt="Retrospeck" className="w-10 h-10" />
             <span className="text-xl font-bold text-white tracking-tight">Retrospeck</span>
           </div>
 
@@ -147,7 +147,7 @@ export default function DashboardPage() {
               animate={{ opacity: 1, y: 0 }}
               className="bg-zinc-900/50 border border-white/10 rounded-2xl p-12 text-center"
             >
-              <img src="/images/retrospeck-logo.jpeg" alt="Retrospeck" className="w-24 h-24 mx-auto mb-4" />
+              <img src="/images/retrospeck-logo.svg" alt="Retrospeck" className="w-24 h-24 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">Let&apos;s get started!</h3>
               <p className="text-zinc-400 mb-6">Retrospeck is ready to help. Create your first board or join an existing one</p>
               <div className="flex gap-3 justify-center">

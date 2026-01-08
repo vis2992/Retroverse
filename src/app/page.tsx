@@ -28,7 +28,7 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <img src="/images/retrospeck-logo.jpeg" alt="Retrospeck" className="w-20 h-20 animate-pulse" />
+          <img src="/images/retrospeck-logo.svg" alt="Retrospeck" className="w-20 h-20 animate-pulse" />
           <div className="w-8 h-8 border-4 border-violet-500/30 border-t-violet-500 rounded-full animate-spin" />
           <p className="text-zinc-500 text-sm">Loading Retrospeck...</p>
         </div>
@@ -120,7 +120,7 @@ export default function Home() {
       <nav className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <img src="/images/retrospeck-logo.jpeg" alt="Retrospeck" className="w-10 h-10 rounded-xl" />
+            <img src="/images/retrospeck-logo.svg" alt="Retrospeck" className="w-10 h-10 rounded-xl" />
             <span className="text-xl font-bold tracking-tight">Retrospeck</span>
           </Link>
 
@@ -342,7 +342,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <img src="/images/retrospeck-logo.jpeg" alt="Retrospeck" className="w-8 h-8 rounded-lg" />
+              <img src="/images/retrospeck-logo.svg" alt="Retrospeck" className="w-8 h-8 rounded-lg" />
               <span className="font-semibold">Retrospeck</span>
             </div>
             <p className="text-zinc-500 text-sm">
