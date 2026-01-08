@@ -19,6 +19,7 @@ interface AuthState {
   isLoading: boolean;
   isInitialized: boolean;
   error: string | null;
+  authUnsubscribe: (() => void) | null;
   
   // Actions
   initialize: () => () => void;
@@ -35,8 +36,16 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   isLoading: false,
   isInitialized: false,
   error: null,
+  authUnsubscribe: null,
 
   initialize: () => {
+    // Prevent multiple auth listeners
+    const { authUnsubscribe: existing } = get();
+    if (existing) {
+      console.warn('Auth listener already exists, skipping initialization');
+      return existing;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         try {
@@ -101,7 +110,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       }
     });
 
-    return unsubscribe;
+    set({ authUnsubscribe: unsubscribe });
+    return () => {
+      unsubscribe();
+      set({ authUnsubscribe: null });
+    };
   },
 
   signIn: async (email: string, password: string) => {
