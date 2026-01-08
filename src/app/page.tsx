@@ -23,6 +23,33 @@ export default function Home() {
     }
   }, [user, isInitialized, router]);
 
+  // Show loading while checking auth status
+  if (!isInitialized) {
+    return (
+      <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-amber-500 rounded-2xl flex items-center justify-center animate-pulse">
+            <span className="text-3xl">🦉</span>
+          </div>
+          <div className="w-8 h-8 border-4 border-violet-500/30 border-t-violet-500 rounded-full animate-spin" />
+          <p className="text-zinc-500 text-sm">Loading Retrospeck...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // If user is logged in, they'll be redirected - show nothing to prevent flash
+  if (user) {
+    return (
+      <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-8 h-8 border-4 border-violet-500/30 border-t-violet-500 rounded-full animate-spin" />
+          <p className="text-zinc-500 text-sm">Redirecting to dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
   const features = [
     {
       icon: MessageSquare,
