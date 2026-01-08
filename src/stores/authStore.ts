@@ -1,0 +1,170 @@
+import { create } from 'zustand';
+import { 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword,
+  signOut as firebaseSignOut,
+  onAuthStateChanged,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
+  type User as FirebaseUser
+} from 'firebase/auth';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { auth, db } from '@/lib/firebase';
+import type { User } from '@/types';
+
+interface AuthState {
+  user: User | null;
+  firebaseUser: FirebaseUser | null;
+  isLoading: boolean;
+  isInitialized: boolean;
+  error: string | null;
+  
+  // Actions
+  initialize: () => () => void;
+  signIn: (email: string, password: string) => Promise<void>;
+  signUp: (email: string, password: string, displayName: string) => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
+  signOut: () => Promise<void>;
+  clearError: () => void;
+}
+
+export const useAuthStore = create<AuthState>((set, get) => ({
+  user: null,
+  firebaseUser: null,
+  isLoading: false,
+  isInitialized: false,
+  error: null,
+
+  initialize: () => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        try {
+          // Fetch or create user document
+          const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+          
+          if (userDoc.exists()) {
+            set({ 
+              user: userDoc.data() as User, 
+              firebaseUser,
+              isInitialized: true,
+              isLoading: false 
+            });
+          } else {
+            // Create user document if it doesn't exist
+            const newUser: User = {
+              id: firebaseUser.uid,
+              email: firebaseUser.email || '',
+              displayName: firebaseUser.displayName || 'Anonymous',
+              photoURL: firebaseUser.photoURL || undefined,
+              createdAt: Date.now(),
+            };
+            
+            try {
+              await setDoc(doc(db, 'users', firebaseUser.uid), newUser);
+            } catch (firestoreError) {
+              console.error('Failed to create user document:', firestoreError);
+              // Continue anyway - user can still use the app
+            }
+            
+            set({ 
+              user: newUser, 
+              firebaseUser,
+              isInitialized: true,
+              isLoading: false 
+            });
+          }
+        } catch (error) {
+          console.error('Error in auth state change:', error);
+          // Still set the user from Firebase Auth data even if Firestore fails
+          const fallbackUser: User = {
+            id: firebaseUser.uid,
+            email: firebaseUser.email || '',
+            displayName: firebaseUser.displayName || 'Anonymous',
+            photoURL: firebaseUser.photoURL || undefined,
+            createdAt: Date.now(),
+          };
+          set({ 
+            user: fallbackUser, 
+            firebaseUser,
+            isInitialized: true,
+            isLoading: false 
+          });
+        }
+      } else {
+        set({ 
+          user: null, 
+          firebaseUser: null,
+          isInitialized: true,
+          isLoading: false 
+        });
+      }
+    });
+
+    return unsubscribe;
+  },
+
+  signIn: async (email: string, password: string) => {
+    set({ isLoading: true, error: null });
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Failed to sign in';
+      set({ error: message, isLoading: false });
+      throw error;
+    }
+  },
+
+  signUp: async (email: string, password: string, displayName: string) => {
+    set({ isLoading: true, error: null });
+    try {
+      const { user: firebaseUser } = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(firebaseUser, { displayName });
+      
+      const newUser: User = {
+        id: firebaseUser.uid,
+        email: firebaseUser.email || '',
+        displayName,
+        createdAt: Date.now(),
+      };
+      
+      try {
+        await setDoc(doc(db, 'users', firebaseUser.uid), newUser);
+      } catch (firestoreError) {
+        console.error('Failed to create user document:', firestoreError);
+        // Continue anyway - the onAuthStateChanged will handle it
+      }
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Failed to sign up';
+      set({ error: message, isLoading: false });
+      throw error;
+    }
+  },
+
+  signInWithGoogle: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      // Note: isLoading will be set to false by onAuthStateChanged
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Failed to sign in with Google';
+      set({ error: message, isLoading: false });
+      throw error;
+    }
+  },
+
+  signOut: async () => {
+    set({ isLoading: true });
+    try {
+      await firebaseSignOut(auth);
+      set({ user: null, firebaseUser: null, isLoading: false });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Failed to sign out';
+      set({ error: message, isLoading: false });
+      throw error;
+    }
+  },
+
+  clearError: () => set({ error: null }),
+}));
