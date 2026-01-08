@@ -77,10 +77,10 @@ export default function DashboardPage() {
       <header className="border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-amber-500 rounded-xl flex items-center justify-center">
+              <span className="text-2xl">🦉</span>
             </div>
-            <span className="text-xl font-bold text-white tracking-tight">Retroverse</span>
+            <span className="text-xl font-bold text-white tracking-tight">Retrospeck</span>
           </div>
 
           <div className="flex items-center gap-4">
@@ -129,10 +129,10 @@ export default function DashboardPage() {
               className="bg-zinc-900/50 border border-white/10 rounded-2xl p-12 text-center"
             >
               <div className="w-16 h-16 bg-violet-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Sparkles className="w-8 h-8 text-violet-400" />
+                <span className="text-5xl">🦉</span>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">No boards yet</h3>
-              <p className="text-zinc-400 mb-6">Create your first retrospective board or join an existing one</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Let's get started!</h3>
+              <p className="text-zinc-400 mb-6">Retrospeck is ready to help. Create your first board or join an existing one</p>
               <div className="flex gap-3 justify-center">
                 <Button onClick={() => setShowCreateModal(true)}>
                   <Plus className="w-4 h-4" />

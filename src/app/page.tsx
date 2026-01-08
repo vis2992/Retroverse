@@ -95,10 +95,10 @@ export default function Home() {
       <nav className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/30">
-              <Sparkles className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-amber-500 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/30">
+              <span className="text-2xl">🦉</span>
             </div>
-            <span className="text-xl font-bold tracking-tight">Retroverse</span>
+            <span className="text-xl font-bold tracking-tight">Retrospeck</span>
           </Link>
 
           <div className="flex items-center gap-3">
@@ -124,8 +124,8 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-sm font-medium mb-8">
-              <Star className="w-4 h-4" />
-              Make your retrospectives actually useful
+              <span className="text-base">🦉</span>
+              See your sprints through Retrospeck's eyes
             </div>
           </motion.div>
 
@@ -135,12 +135,12 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-5xl sm:text-7xl font-bold tracking-tight mb-6 leading-tight"
           >
-            Run{' '}
-            <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-indigo-400 bg-clip-text text-transparent">
-              retrospectives
+            See your sprints{' '}
+            <span className="bg-gradient-to-r from-violet-400 via-amber-400 to-indigo-400 bg-clip-text text-transparent">
+              more clearly
             </span>
             <br />
-            your team will love
+            with Retrospeck
           </motion.h1>
 
           <motion.p
@@ -149,8 +149,8 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            A beautiful, real-time collaboration space where teams reflect, share feedback, 
-            and continuously improve together.
+            Your wise owl companion for agile retrospectives. Retrospeck helps teams reflect, 
+            discover insights, and learn from every sprint in a beautiful real-time workspace.
           </motion.p>
 
           <motion.div
@@ -273,8 +273,8 @@ export default function Home() {
               ))}
             </div>
             <blockquote className="text-2xl sm:text-3xl font-medium text-white max-w-3xl mx-auto mb-6 leading-relaxed">
-              &quot;Retroverse transformed how our team does retrospectives. 
-              It&apos;s simple, beautiful, and actually makes our meetings productive.&quot;
+              &quot;Retrospeck transformed how our team does retrospectives. 
+              It&apos;s like having a wise facilitator who helps us see patterns we'd miss.&quot;
             </blockquote>
             <div className="flex items-center justify-center gap-3">
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600" />
@@ -299,9 +299,9 @@ export default function Home() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-500/10 via-transparent to-transparent" />
             
             <div className="relative z-10">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to transform your retros?</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to see more clearly?</h2>
               <p className="text-zinc-400 text-lg mb-8 max-w-xl mx-auto">
-                Join thousands of teams using Retroverse to improve their workflow
+                Join teams using Retrospeck to gain insights and improve with every sprint
               </p>
               <Link href="/signup">
                 <Button size="lg">
@@ -319,13 +319,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-lg flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-amber-500 rounded-lg flex items-center justify-center">
+                <span className="text-lg">🦉</span>
               </div>
-              <span className="font-semibold">Retroverse</span>
+              <span className="font-semibold">Retrospeck</span>
             </div>
             <p className="text-zinc-500 text-sm">
-              © {new Date().getFullYear()} Retroverse. Built with 💜 for agile teams.
+              © {new Date().getFullYear()} Retrospeck. Built with 💜 for agile teams.
             </p>
           </div>
         </div>

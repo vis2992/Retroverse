@@ -246,11 +246,11 @@ export default function BoardPage() {
             className="flex flex-col items-center justify-center py-20"
           >
             <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mb-6">
-              <Sparkles className="w-10 h-10 text-violet-400" />
+              <span className="text-6xl">🦉</span>
             </div>
-            <h2 className="text-2xl font-bold text-white mb-2">Start your retrospective</h2>
+            <h2 className="text-2xl font-bold text-white mb-2">What does Retrospeck see?</h2>
             <p className="text-white/60 mb-6 text-center max-w-md">
-              Add your first list to begin collecting feedback from your team
+              Add your first list to begin gathering insights from your sprint
             </p>
             <Button onClick={() => setShowAddList(true)}>
               <Plus className="w-4 h-4" />

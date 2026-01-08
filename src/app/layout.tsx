@@ -16,9 +16,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Retroverse - Run retrospectives your team will love",
-  description: "A beautiful, real-time collaboration space where teams reflect, share feedback, and continuously improve together.",
-  keywords: ["retrospective", "agile", "scrum", "team collaboration", "feedback"],
+  title: "Retrospeck - See your sprints more clearly",
+  description: "A friendly, real-time retrospective tool that helps agile teams reflect, learn, and continuously improve together. Guided by Retrospeck, your wise owl companion.",
+  keywords: ["retrospective", "agile", "scrum", "team collaboration", "feedback", "sprint review", "retrospeck"],
 };
 
 export default function RootLayout({

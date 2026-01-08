@@ -57,17 +57,17 @@ export default function SignUpPage() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 justify-center mb-8">
-          <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center">
-            <Sparkles className="w-6 h-6 text-white" />
+          <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-amber-500 rounded-xl flex items-center justify-center">
+            <span className="text-2xl">🦉</span>
           </div>
-          <span className="text-2xl font-bold text-white tracking-tight">Retroverse</span>
+          <span className="text-2xl font-bold text-white tracking-tight">Retrospeck</span>
         </Link>
 
         {/* Card */}
         <div className="bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-white mb-2">Create your account</h1>
-            <p className="text-zinc-400">Start running better retrospectives today</p>
+            <h1 className="text-2xl font-bold text-white mb-2">Join Retrospeck</h1>
+            <p className="text-zinc-400">Start seeing your sprints more clearly</p>
           </div>
 
           {error && (

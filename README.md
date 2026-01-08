@@ -1,6 +1,6 @@
-# Retroverse 🌟
+# Retrospeck 🦉
 
-A beautiful, real-time retrospective board application where teams reflect, share feedback, and continuously improve together.
+See your sprints more clearly with Retrospeck - your wise owl companion for agile retrospectives. A beautiful, real-time collaboration space where teams reflect, discover insights, and continuously improve together.
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black)
 ![Firebase](https://img.shields.io/badge/Firebase-12-orange)

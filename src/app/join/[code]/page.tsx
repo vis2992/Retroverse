@@ -71,8 +71,8 @@ export default function JoinPage() {
         animate={{ opacity: 1 }}
         className="flex flex-col items-center gap-6"
       >
-        <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-2xl flex items-center justify-center">
-          <Sparkles className="w-8 h-8 text-white" />
+        <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-amber-500 rounded-2xl flex items-center justify-center">
+          <span className="text-4xl">🦉</span>
         </div>
         <div className="text-center">
           <h1 className="text-xl font-semibold text-white mb-2">Joining board...</h1>
