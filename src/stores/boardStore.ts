@@ -397,6 +397,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   },
 
   createCard: async (listId: string, boardId: string, content: string, authorId: string, authorName: string, isAnonymous: boolean, gifUrl?: string) => {
+    console.log('[Card] Creating card in list:', listId);
     set({ isSaving: true, error: null });
     try {
       const { cards } = get();
@@ -419,12 +420,15 @@ export const useBoardStore = create<BoardState>((set, get) => ({
         order: maxOrder + 1,
         gifUrl: gifUrl || undefined,
       };
+      console.log('[Card] Writing to Firestore...');
       await setDoc(doc(db, 'cards', cardId), card);
+      console.log('[Card] Card created successfully:', cardId);
       set({ isSaving: false });
     } catch (error: unknown) {
-      console.error('Failed to create card:', error);
+      console.error('[Card] FAILED to create card:', error);
       const message = error instanceof Error ? error.message : 'Failed to create card';
       set({ error: message, isSaving: false });
+      throw error; // Re-throw so the component knows it failed
     }
   },
 

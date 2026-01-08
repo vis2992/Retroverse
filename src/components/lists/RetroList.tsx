@@ -47,9 +47,14 @@ export function RetroList({ list, cards, boardId }: RetroListProps) {
         isAnonymous,
         newCardGif || undefined
       );
+      // Only clear and close if successful
       setNewCardContent('');
       setNewCardGif('');
       setShowAddCard(false);
+    } catch (error) {
+      // Show error to user - the error is already logged in the store
+      console.error('Failed to add card:', error);
+      alert('Failed to create card. Please check your connection and try again.');
     } finally {
       setIsAdding(false);
     }
