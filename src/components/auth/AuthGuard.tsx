@@ -27,7 +27,8 @@ export function AuthGuard({ children }: AuthGuardProps) {
           animate={{ opacity: 1 }}
           className="flex flex-col items-center gap-4"
         >
-          <div className="w-12 h-12 border-4 border-violet-500/30 border-t-violet-500 rounded-full animate-spin" />
+          <img src="/images/retrospeck-logo.png" alt="Retrospeck" className="w-16 h-16 animate-pulse" />
+          <div className="w-8 h-8 border-4 border-violet-500/30 border-t-violet-500 rounded-full animate-spin" />
           <p className="text-zinc-400 text-sm">Loading...</p>
         </motion.div>
       </div>
